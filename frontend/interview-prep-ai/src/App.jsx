@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Landing/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
+          {/* <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<SignUp/>}/> */}
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/interview-prep/:sessionId' element={<InterviewPrep/>}/>
         </Routes>
