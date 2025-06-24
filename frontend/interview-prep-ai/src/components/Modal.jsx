@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Modal = ( {children,isOpen,onClose,hideHeader,title}) => {
-   
+   if(!isOpen) return null;
   return (
     <div className='fixed inset-0 z-10 flex justify-center items-center w-full h-full bg-black/40'>
         <div className={`relative flexx felx-col bg-white shadow-lg rounded-lg overflow-hidden`}>
