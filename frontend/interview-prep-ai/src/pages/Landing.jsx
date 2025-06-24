@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import HERO_IMG from '../assets/hero-img.png'
 import {APP_FEATURES} from '../utils/data'
 import { useNavigate } from 'react-router-dom'
-
+import Login from './Auth/Login'
+import SignUp from './Auth/SignUp'
+import Modal from '../components/Modal'
 function Landing() {
     const navigate=useNavigate();
     const [openAuthModel,setOpenAuthModel]=useState(false);
@@ -53,7 +55,7 @@ function Landing() {
     </div>
   
    </div>
-     <div className='w-full min-h-full relative z-10 mb-56 '>
+     <div className='w-full min-h-full relative z-10 '>
         <div>
             <section className='flex items-center justify-center -mt-36'>
                 <img src={HERO_IMG} 
@@ -75,22 +77,35 @@ function Landing() {
                             <p className=''>{feature.description}</p></div>
                        ))}
                         </div>
-                        <div className=''>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                             {APP_FEATURES.slice(3).map((feature)=>(
                                 <div key={feature.id}
-                                className=''>
-                                    <h3 className=''>{feature.title}</h3>
-                                    <p className=''>{feature.description}</p>
+                                className='bg-[#FFFeF8] p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100 '>
+                                    <h3 className='text-base font-semibold mb-3 '>{feature.title}</h3>
+                                    <p className='text-gray-600'>{feature.description}</p>
 </div>                            ))}
                         </div>
                         </div>
                 </section>
             </div>
         </div>
-        <div className=''>
-            Made with Love... Happy Coding
+        <div className='text-sm bg-gray-50 text-secondary text-center p-5 mt-5'>
+            Made with ❤️... Happy Coding
         </div>
      </div>
+     <Modal isOpen={openAuthModel} onClose={()=>{
+        setOpenAuthModel(false);
+        setCurrentPage("login");
+     }} hideHeader>
+        <div>
+            {currentPage==="login" && (
+                <Login setCurrentPage={setCurrentPage}/>
+            )}
+            {currentPage==="signup" && (
+                <SignUp setCurrentPage={setCurrentPage}/>
+            )}
+        </div>
+     </Modal>
    </>
   )
 }
